@@ -46,6 +46,27 @@ public class Game
         this.player4 = player4;
         this.complete = complete;
         board = new Board();
+        checkNames();
+    }
+
+    public void checkNames()
+    {
+        if(player1.equals(""))
+        {
+            player1 = "Blue A";
+        }
+        if(player2.equals(""))
+        {
+            player2 = "Blue B";
+        }
+        if(player3.equals(""))
+        {
+            player3 = "Red A";
+        }
+        if(player4.equals(""))
+        {
+            player4 = "Red B";
+        }
     }
 
     public void next(int yours, int theirs, InGameActivity a)
