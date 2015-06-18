@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by mail929 on 6/9/15.
  */
-public class GamesActivity extends AppCompatActivity
+public class ExistingGamesActivity extends AppCompatActivity
 {
 
     @Override
@@ -33,8 +33,18 @@ public class GamesActivity extends AppCompatActivity
 
         final Context c = this;
 
+        final List<Game> games = new ArrayList<>();
+        for(int i = 0; i < IO.getInstance().games.size(); i++)
+        {
+            Game game = IO.getInstance().games.get(i);
+            if(!game.complete)
+            {
+                games.add(game);
+            }
+        }
+
         final ListView list = (ListView) findViewById(R.id.listView);
-        list.setAdapter(new ArrayAdapter<Game>(this, android.R.layout.simple_list_item_1, android.R.id.text1, IO.getInstance().games)
+        list.setAdapter(new ArrayAdapter<Game>(this, R.layout.listitem_game, R.id.blueNames, games)
         {
             public View getView(final int position, View convertView, ViewGroup parent)
             {
@@ -42,14 +52,16 @@ public class GamesActivity extends AppCompatActivity
                 if (convertView == null)
                 {
                     LayoutInflater infl = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-                    convertView = infl.inflate(android.R.layout.simple_list_item_1, parent, false);
+                    convertView = infl.inflate(R.layout.listitem_game, parent, false);
                 }
                 view = super.getView(position, convertView, parent);
 
-                final Game game = IO.getInstance().games.get(position);
+                final Game game = games.get(position);
 
-                TextView tv = (TextView) view.findViewById(android.R.id.text1);
-                tv.setText(game.getPlayer(1) + ", " + game.getPlayer(2) + ", " + game.getPlayer(3) + ", " + game.getPlayer(4));
+                ((TextView) view.findViewById(R.id.blueNames)).setText(game.getPlayer(1) + " and " + game.getPlayer(2));
+                ((TextView) view.findViewById(R.id.redNames)).setText(game.getPlayer(3) + " and " + game.getPlayer(4));
+                ((TextView) view.findViewById(R.id.blueScore)).setText(Integer.toString(game.blueScore));
+                ((TextView) view.findViewById(R.id.redScore)).setText(Integer.toString(game.redScore));
 
                 view.setOnClickListener(new View.OnClickListener()
                 {
@@ -67,7 +79,14 @@ public class GamesActivity extends AppCompatActivity
                     @Override
                     public boolean onLongClick(View v)
                     {
-                        IO.getInstance().games.remove(position);
+                        for(int i = 0; i < IO.getInstance().games.size(); i++)
+                        {
+                            if(IO.getInstance().games.get(i).equals(games.get(position)))
+                            {
+                                IO.getInstance().games.remove(i);
+                            }
+                        }
+                        games.remove(position);
                         try {
                             IO.getInstance().save();
                         } catch (JSONException e) {

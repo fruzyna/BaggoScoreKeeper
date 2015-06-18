@@ -12,6 +12,7 @@ import java.util.List;
 public class Game
 {
     boolean isFirstTo;
+    boolean complete;
     int goal;
     int throwsAllowed;
     String player1;
@@ -34,7 +35,7 @@ public class Game
     Board board;
     List<Board> boards = new ArrayList<>();
     
-    public Game(boolean isFirstTo, int goal, int throwsAllowed, String player1, String player2, String player3, String player4)
+    public Game(boolean isFirstTo, int goal, int throwsAllowed, String player1, String player2, String player3, String player4, boolean complete)
     {
         this.isFirstTo = isFirstTo;
         this.goal = goal;
@@ -43,6 +44,7 @@ public class Game
         this.player2 = player2;
         this.player3 = player3;
         this.player4 = player4;
+        this.complete = complete;
         board = new Board();
     }
 
@@ -101,6 +103,7 @@ public class Game
                     {
                         if(currentRound == goal)
                         {
+                            complete = true;
                             DialogFragment dialog = new TextDialog();
                             Bundle args = new Bundle();
                             String winner;
@@ -127,6 +130,7 @@ public class Game
                     {
                         if(blueScore >= goal || redScore >= 21)
                         {
+                            complete = true;
                             DialogFragment dialog = new TextDialog();
                             Bundle args = new Bundle();
                             String winner = "No";

@@ -1,7 +1,6 @@
 package com.mail929.android.baggoscorekeeper;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -27,7 +26,7 @@ public class ViewGameActivity extends AppCompatActivity
 
         ListView list = (ListView) findViewById(R.id.listView);
         final Game game = IO.getInstance().games.get(getIntent().getIntExtra("Game", 0));
-        list.setAdapter(new ArrayAdapter<Board>(this, R.layout.listitem_game, R.id.redName, game.boards)
+        list.setAdapter(new ArrayAdapter<Board>(this, R.layout.listitem_board, R.id.redName, game.boards)
         {
             public View getView(final int position, View convertView, ViewGroup parent)
             {
@@ -35,7 +34,7 @@ public class ViewGameActivity extends AppCompatActivity
                 if (convertView == null)
                 {
                     LayoutInflater infl = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-                    convertView = infl.inflate(R.layout.listitem_game, parent, false);
+                    convertView = infl.inflate(R.layout.listitem_board, parent, false);
                 }
                 view = super.getView(position, convertView, parent);
 

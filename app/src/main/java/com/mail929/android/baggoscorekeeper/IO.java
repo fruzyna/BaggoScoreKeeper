@@ -62,6 +62,7 @@ public class IO
             JSONObject jGame = new JSONObject();
             Game game = games.get(i);
             jGame.put("isFirstTo", game.isFirstTo);
+            jGame.put("complete", game.complete);
             jGame.put("goal", game.goal);
             jGame.put("throwsAllowed", game.throwsAllowed);
             jGame.put("player1", game.player1);
@@ -128,7 +129,7 @@ public class IO
         {
             JSONObject jGame = jGames.getJSONObject(i);
             Game game = new Game(jGame.getBoolean("isFirstTo"), jGame.getInt("goal"), jGame.getInt("throwsAllowed"),
-                    jGame.getString("player1"), jGame.getString("player2"), jGame.getString("player3"), jGame.getString("player4"));
+                    jGame.getString("player1"), jGame.getString("player2"), jGame.getString("player3"), jGame.getString("player4"), jGame.getBoolean("complete"));
             game.currentRound = jGame.getInt("currentRound");
             game.currentSide = jGame.getInt("currentSide");
             game.currentPlayer = jGame.getInt("currentPlayer");

@@ -27,7 +27,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".GamesActivity"
+            android:name=".ExistingGamesActivity"
             android:label="@string/app_name" >
         </activity>
         <activity

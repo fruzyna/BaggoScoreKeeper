@@ -50,7 +50,7 @@ public class InGameActivity extends AppCompatActivity
         if(i.getStringExtra("Type").equals("new"))
         {
             game = new Game(i.getBooleanExtra("isFirstTo", true), i.getIntExtra("goal", 21), i.getIntExtra("throws", 5),
-                    i.getStringExtra("player1"), i.getStringExtra("player2"), i.getStringExtra("player3"), i.getStringExtra("player4"));
+                    i.getStringExtra("player1"), i.getStringExtra("player2"), i.getStringExtra("player3"), i.getStringExtra("player4"), false);
             IO.getInstance().games.add(game);
         }
         else if(i.getStringExtra("Type").equals("existing"))

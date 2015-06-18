@@ -10,7 +10,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/top"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:background="#FFF176"
+        android:padding="16dp"
+        android:translationZ="4dp">
 
         <TextView
             android:layout_width="0dp"

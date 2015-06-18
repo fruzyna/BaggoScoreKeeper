@@ -31,7 +31,7 @@ public class ViewGamesActivity extends AppCompatActivity
         final Context c = this;
 
         final ListView list = (ListView) findViewById(R.id.listView);
-        list.setAdapter(new ArrayAdapter<Game>(this, android.R.layout.simple_list_item_1, android.R.id.text1, IO.getInstance().games)
+        list.setAdapter(new ArrayAdapter<Game>(this, R.layout.listitem_game, R.id.blueNames, IO.getInstance().games)
         {
             public View getView(final int position, View convertView, ViewGroup parent)
             {
@@ -39,14 +39,16 @@ public class ViewGamesActivity extends AppCompatActivity
                 if (convertView == null)
                 {
                     LayoutInflater infl = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-                    convertView = infl.inflate(android.R.layout.simple_list_item_1, parent, false);
+                    convertView = infl.inflate(R.layout.listitem_game, parent, false);
                 }
                 view = super.getView(position, convertView, parent);
 
                 final Game game = IO.getInstance().games.get(position);
 
-                TextView tv = (TextView) view.findViewById(android.R.id.text1);
-                tv.setText(game.getPlayer(1) + ", " + game.getPlayer(2) + ", " + game.getPlayer(3) + ", " + game.getPlayer(4));
+                ((TextView) view.findViewById(R.id.blueNames)).setText(game.getPlayer(1) + " and " + game.getPlayer(2));
+                ((TextView) view.findViewById(R.id.redNames)).setText(game.getPlayer(3) + " and " + game.getPlayer(4));
+                ((TextView) view.findViewById(R.id.blueScore)).setText(Integer.toString(game.blueScore));
+                ((TextView) view.findViewById(R.id.redScore)).setText(Integer.toString(game.redScore));
 
                 view.setOnClickListener(new View.OnClickListener()
                 {
