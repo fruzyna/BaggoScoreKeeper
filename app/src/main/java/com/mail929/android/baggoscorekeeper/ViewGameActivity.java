@@ -52,6 +52,7 @@ public class ViewGameActivity extends AppCompatActivity
                 redKIn.setText(Integer.toString(b.redKnockedIn));
                 TextView redKOff = (TextView) view.findViewById(R.id.redKOff);
                 redKOff.setText(Integer.toString(b.redKnockedOff));
+                
                 TextView blueName = (TextView) view.findViewById(R.id.blueName);
                 blueName.setText(b.blueName);
                 TextView blueOn = (TextView) view.findViewById(R.id.blueOn);
@@ -68,5 +69,103 @@ public class ViewGameActivity extends AppCompatActivity
                 return view;
             }
         });
+        
+        Board aTotals = new Board();
+        Board bTotals = new Board();
+        
+        for(int i = 0; i < game.boards.size(); i++)
+        {
+            Board b = game.boards.get(i);
+            if(aTotals.blueName.equals(b.blueName))
+            {
+                aTotals.redOn += b.redOn;
+                aTotals.redIn += b.redIn;
+                aTotals.redOff += b.redOff;
+                aTotals.redKnockedIn += b.redKnockedIn;
+                aTotals.redKnockedOff += b.redKnockedOff;
+                
+                aTotals.blueOn += b.blueOn;
+                aTotals.blueIn += b.blueIn;
+                aTotals.blueOff += b.blueOff;
+                aTotals.blueKnockedIn += b.blueKnockedIn;
+                aTotals.blueKnockedOff += b.blueKnockedOff;
+            }
+            else if(bTotals.blueName.equals(b.blueName))
+            {
+                bTotals.redOn += b.redOn;
+                bTotals.redIn += b.redIn;
+                bTotals.redOff += b.redOff;
+                bTotals.redKnockedIn += b.redKnockedIn;
+                bTotals.redKnockedOff += b.redKnockedOff;
+
+                bTotals.blueOn += b.blueOn;
+                bTotals.blueIn += b.blueIn;
+                bTotals.blueOff += b.blueOff;
+                bTotals.blueKnockedIn += b.blueKnockedIn;
+                bTotals.blueKnockedOff += b.blueKnockedOff;
+            }
+            else if(aTotals.blueName.equals(""))
+            {
+                aTotals.blueName = b.blueName;
+                aTotals.redName = b.redName;
+                
+                aTotals.redOn += b.redOn;
+                aTotals.redIn += b.redIn;
+                aTotals.redOff += b.redOff;
+                aTotals.redKnockedIn += b.redKnockedIn;
+                aTotals.redKnockedOff += b.redKnockedOff;
+
+                aTotals.blueOn += b.blueOn;
+                aTotals.blueIn += b.blueIn;
+                aTotals.blueOff += b.blueOff;
+                aTotals.blueKnockedIn += b.blueKnockedIn;
+                aTotals.blueKnockedOff += b.blueKnockedOff;
+            }
+            else if(bTotals.blueName.equals(""))
+            {
+                bTotals.blueName = b.blueName;
+                bTotals.redName = b.redName;
+
+                bTotals.redOn += b.redOn;
+                bTotals.redIn += b.redIn;
+                bTotals.redOff += b.redOff;
+                bTotals.redKnockedIn += b.redKnockedIn;
+                bTotals.redKnockedOff += b.redKnockedOff;
+
+                bTotals.blueOn += b.blueOn;
+                bTotals.blueIn += b.blueIn;
+                bTotals.blueOff += b.blueOff;
+                bTotals.blueKnockedIn += b.blueKnockedIn;
+                bTotals.blueKnockedOff += b.blueKnockedOff;
+            }
+        }
+
+        ((TextView) findViewById(R.id.ra_name)).setText(aTotals.redName);
+        ((TextView) findViewById(R.id.ra_on)).setText(Integer.toString(aTotals.redOn));
+        ((TextView) findViewById(R.id.ra_in)).setText(Integer.toString(aTotals.redIn));
+        ((TextView) findViewById(R.id.ra_missed)).setText(Integer.toString(aTotals.redOff));
+        ((TextView) findViewById(R.id.ra_kin)).setText(Integer.toString(aTotals.redKnockedIn));
+        ((TextView) findViewById(R.id.ra_koff)).setText(Integer.toString(aTotals.redKnockedOff));
+        
+        ((TextView) findViewById(R.id.ba_name)).setText(aTotals.blueName);
+        ((TextView) findViewById(R.id.ba_on)).setText(Integer.toString(aTotals.blueOn));
+        ((TextView) findViewById(R.id.ba_in)).setText(Integer.toString(aTotals.blueIn));
+        ((TextView) findViewById(R.id.ba_missed)).setText(Integer.toString(aTotals.blueOff));
+        ((TextView) findViewById(R.id.ba_kin)).setText(Integer.toString(aTotals.blueKnockedIn));
+        ((TextView) findViewById(R.id.ba_koff)).setText(Integer.toString(aTotals.blueKnockedOff));
+
+        ((TextView) findViewById(R.id.rb_name)).setText(bTotals.redName);
+        ((TextView) findViewById(R.id.rb_on)).setText(Integer.toString(bTotals.redOn));
+        ((TextView) findViewById(R.id.rb_in)).setText(Integer.toString(bTotals.redIn));
+        ((TextView) findViewById(R.id.rb_missed)).setText(Integer.toString(bTotals.redOff));
+        ((TextView) findViewById(R.id.rb_kin)).setText(Integer.toString(bTotals.redKnockedIn));
+        ((TextView) findViewById(R.id.rb_koff)).setText(Integer.toString(bTotals.redKnockedOff));
+
+        ((TextView) findViewById(R.id.bb_name)).setText(bTotals.blueName);
+        ((TextView) findViewById(R.id.bb_on)).setText(Integer.toString(bTotals.blueOn));
+        ((TextView) findViewById(R.id.bb_in)).setText(Integer.toString(bTotals.blueIn));
+        ((TextView) findViewById(R.id.bb_missed)).setText(Integer.toString(bTotals.blueOff));
+        ((TextView) findViewById(R.id.bb_kin)).setText(Integer.toString(bTotals.blueKnockedIn));
+        ((TextView) findViewById(R.id.bb_koff)).setText(Integer.toString(bTotals.blueKnockedOff));
     }
 }

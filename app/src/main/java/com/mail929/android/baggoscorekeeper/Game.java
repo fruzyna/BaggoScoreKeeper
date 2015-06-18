@@ -113,6 +113,55 @@ public class Game
                 }
                 blueRoundScore = 0;
                 redRoundScore = 0;
+                if(!isFirstTo)
+                {
+                    if(currentRound == goal)
+                    {
+                        complete = true;
+                        DialogFragment dialog = new TextDialog();
+                        Bundle args = new Bundle();
+                        String winner;
+                        if(blueScore > redScore)
+                        {
+                            winner = "Blue";
+                        }
+                        else if(redScore > blueScore)
+                        {
+                            winner = "Red";
+                        }
+                        else
+                        {
+                            winner = "No";
+                        }
+
+                        args.putString("title", winner + " team wins!");
+                        args.putString("message", "The game has finished its " + goal + " rounds. The final score was " + blueScore + " to " + redScore + ".");
+                        dialog.setArguments(args);
+                        dialog.show(a.getFragmentManager(), "");
+                    }
+                }
+                else
+                {
+                    if(blueScore >= goal || redScore >= 21)
+                    {
+                        complete = true;
+                        DialogFragment dialog = new TextDialog();
+                        Bundle args = new Bundle();
+                        String winner = "No";
+                        if(blueScore >= goal)
+                        {
+                            winner = "Blue";
+                        }
+                        else if(redScore >= goal)
+                        {
+                            winner = "Red";
+                        }
+                        args.putString("title", winner + " team wins!");
+                        args.putString("message", "The score of " + goal + " has been reached. The final score was " + blueScore + " to " + redScore + ".");
+                        dialog.setArguments(args);
+                        dialog.show(a.getFragmentManager(), "");
+                    }
+                }
                 if(currentSide == 1)
                 {
                     currentSide = 2;
@@ -120,55 +169,6 @@ public class Game
                 else
                 {
                     currentSide = 1;
-                    if(!isFirstTo)
-                    {
-                        if(currentRound == goal)
-                        {
-                            complete = true;
-                            DialogFragment dialog = new TextDialog();
-                            Bundle args = new Bundle();
-                            String winner;
-                            if(blueScore > redScore)
-                            {
-                                winner = "Blue";
-                            }
-                            else if(redScore > blueScore)
-                            {
-                                winner = "Red";
-                            }
-                            else
-                            {
-                                winner = "No";
-                            }
-
-                            args.putString("title", winner + " team wins!");
-                            args.putString("message", "The game has finished its " + goal + " rounds. The final score was " + blueScore + " to " + redScore + ".");
-                            dialog.setArguments(args);
-                            dialog.show(a.getFragmentManager(), "");
-                        }
-                    }
-                    else
-                    {
-                        if(blueScore >= goal || redScore >= 21)
-                        {
-                            complete = true;
-                            DialogFragment dialog = new TextDialog();
-                            Bundle args = new Bundle();
-                            String winner = "No";
-                            if(blueScore >= goal)
-                            {
-                                winner = "Blue";
-                            }
-                            else if(redScore >= goal)
-                            {
-                                winner = "Red";
-                            }
-                            args.putString("title", winner + " team wins!");
-                            args.putString("message", "The score of " + goal + " has been reached. The final score was " + blueScore + " to " + redScore + ".");
-                            dialog.setArguments(args);
-                            dialog.show(a.getFragmentManager(), "");
-                        }
-                    }
                     currentRound++;
 
                 }

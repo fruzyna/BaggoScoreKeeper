@@ -223,7 +223,6 @@ public class InGameActivity extends AppCompatActivity
         yours -= yoursOffBoard;
         theirs += 2 * theirsInHole;
         theirs -= theirsOffBoard;
-        game.next(yours, theirs, c);
         Board board = game.board;
         if(game.isBlue(game.currentPlayer))
         {
@@ -267,6 +266,7 @@ public class InGameActivity extends AppCompatActivity
             board.redName = game.getPlayer(game.currentPlayer);
             board.blueName = game.getPlayer(game.getOpposingPlayer(game.currentPlayer));
         }
+        game.next(yours, theirs, c);
     }
 
     public void refreshButtons()
