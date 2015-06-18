@@ -3,7 +3,9 @@ package com.mail929.android.baggoscorekeeper;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -110,7 +112,7 @@ public class InGameActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 yoursInHole++;
-                yoursIn.setText("In Hole (" + yoursInHole + ")");
+                refreshButtons();
             }
         });
         yoursIn.setOnLongClickListener(new View.OnLongClickListener()
@@ -122,7 +124,7 @@ public class InGameActivity extends AppCompatActivity
                 {
                     yoursInHole--;
                 }
-                yoursIn.setText("In Hole (" + yoursInHole + ")");
+                refreshButtons();
                 return true;
             }
         });
@@ -132,7 +134,7 @@ public class InGameActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 yoursOffBoard++;
-                yoursOff.setText("Off Board (" + yoursOffBoard + ")");
+                refreshButtons();
             }
         });
         yoursOff.setOnLongClickListener(new View.OnLongClickListener()
@@ -144,7 +146,7 @@ public class InGameActivity extends AppCompatActivity
                 {
                     yoursOffBoard--;
                 }
-                yoursOff.setText("Off Board (" + yoursOffBoard + ")");
+                refreshButtons();
                 return true;
             }
         });
@@ -154,7 +156,7 @@ public class InGameActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 theirsInHole++;
-                theirsIn.setText("In Hole (" + theirsInHole + ")");
+                refreshButtons();
             }
         });
         theirsIn.setOnLongClickListener(new View.OnLongClickListener()
@@ -166,7 +168,7 @@ public class InGameActivity extends AppCompatActivity
                 {
                     theirsInHole--;
                 }
-                theirsIn.setText("In Hole (" + theirsInHole + ")");
+                refreshButtons();
                 return true;
             }
         });
@@ -176,7 +178,7 @@ public class InGameActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 theirsOffBoard++;
-                theirsOff.setText("Off Board (" + theirsOffBoard + ")");
+                refreshButtons();
             }
         });
         theirsOff.setOnLongClickListener(new View.OnLongClickListener()
@@ -188,7 +190,7 @@ public class InGameActivity extends AppCompatActivity
                 {
                     theirsOffBoard--;
                 }
-                theirsOff.setText("Off Board (" + theirsOffBoard + ")");
+                refreshButtons();
                 return true;
             }
         });
@@ -199,67 +201,80 @@ public class InGameActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                int yours = 0;
-                int theirs = 0;
-                if(inHole)
-                {
-                    yours +=3;
-                }
-                else if(onBoard)
-                {
-                    yours += 1;
-                }
-                yours += 2 * yoursInHole;
-                yours -= yoursOffBoard;
-                theirs += 2 * theirsInHole;
-                theirs -= yoursOffBoard;
-                game.next(yours, theirs, c);
-                Board board = game.board;
-                if(game.isBlue(game.currentPlayer))
-                {
-                    if(inHole)
-                    {
-                        board.blueIn++;
-                    }
-                    else if(onBoard)
-                    {
-                        board.blueOn++;
-                    }
-                    else
-                    {
-                        board.blueOff++;
-                    }
-                    board.blueKnockedIn += yoursInHole;
-                    board.blueKnockedOff += yoursOffBoard;
-                    board.redKnockedIn += theirsInHole;
-                    board.redKnockedOff += theirsOffBoard;
-                    board.blueName = game.getPlayer(game.currentPlayer);
-                    board.redName = game.getPlayer(game.getOpposingPlayer(game.currentPlayer));
-                }
-                else
-                {
-                    if(inHole)
-                    {
-                        board.redIn++;
-                    }
-                    else if(onBoard)
-                    {
-                        board.redOn++;
-                    }
-                    else
-                    {
-                        board.redOff++;
-                    }
-                    board.redKnockedIn += yoursInHole;
-                    board.redKnockedOff += yoursOffBoard;
-                    board.blueKnockedIn += theirsInHole;
-                    board.blueKnockedOff += theirsOffBoard;
-                    board.redName = game.getPlayer(game.currentPlayer);
-                    board.blueName = game.getPlayer(game.getOpposingPlayer(game.currentPlayer));
-                }
+                calc(c);
                 update();
             }
         });
+    }
+
+    public void calc(InGameActivity c)
+    {
+        int yours = 0;
+        int theirs = 0;
+        if(inHole)
+        {
+            yours +=3;
+        }
+        else if(onBoard)
+        {
+            yours += 1;
+        }
+        yours += 2 * yoursInHole;
+        yours -= yoursOffBoard;
+        theirs += 2 * theirsInHole;
+        theirs -= theirsOffBoard;
+        game.next(yours, theirs, c);
+        Board board = game.board;
+        if(game.isBlue(game.currentPlayer))
+        {
+            if(inHole)
+            {
+                board.blueIn++;
+            }
+            else if(onBoard)
+            {
+                board.blueOn++;
+            }
+            else
+            {
+                board.blueOff++;
+            }
+            board.blueKnockedIn += yoursInHole;
+            board.blueKnockedOff += yoursOffBoard;
+            board.redKnockedIn += theirsInHole;
+            board.redKnockedOff += theirsOffBoard;
+            board.blueName = game.getPlayer(game.currentPlayer);
+            board.redName = game.getPlayer(game.getOpposingPlayer(game.currentPlayer));
+        }
+        else
+        {
+            if(inHole)
+            {
+                board.redIn++;
+            }
+            else if(onBoard)
+            {
+                board.redOn++;
+            }
+            else
+            {
+                board.redOff++;
+            }
+            board.redKnockedIn += yoursInHole;
+            board.redKnockedOff += yoursOffBoard;
+            board.blueKnockedIn += theirsInHole;
+            board.blueKnockedOff += theirsOffBoard;
+            board.redName = game.getPlayer(game.currentPlayer);
+            board.blueName = game.getPlayer(game.getOpposingPlayer(game.currentPlayer));
+        }
+    }
+
+    public void refreshButtons()
+    {
+        yoursIn.setText("In Hole (" + yoursInHole + ")");
+        yoursOff.setText("Off Board (" + yoursOffBoard + ")");
+        theirsIn.setText("In Hole (" + theirsInHole + ")");
+        theirsOff.setText("Off Board (" + theirsOffBoard + ")");
     }
 
     public void update()
@@ -307,9 +322,13 @@ public class InGameActivity extends AppCompatActivity
         {
             change.setText("+" + 0);
         }
-        inHoleB.setEnabled(true);
-        onBoardB.setEnabled(true);
-        missedB.setEnabled(false);
+
+        resetValues();
+        resetUI();
+    }
+
+    public void resetValues()
+    {
         inHole = false;
         onBoard = false;
         missed = true;
@@ -317,5 +336,13 @@ public class InGameActivity extends AppCompatActivity
         yoursOffBoard = 0;
         theirsInHole = 0;
         theirsOffBoard = 0;
+    }
+
+    public void resetUI()
+    {
+        inHoleB.setEnabled(!inHole);
+        onBoardB.setEnabled(!onBoard);
+        missedB.setEnabled(!missed);
+        refreshButtons();
     }
 }
