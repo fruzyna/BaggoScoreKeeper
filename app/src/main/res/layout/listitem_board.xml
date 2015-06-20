@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="BLUE"
             android:id="@+id/blueName"
-            android:textColor="@color/buttonblue" />
+            android:textColor="@color/blue" />
 
         <TextView
             android:layout_width="0dp"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:text="RED"
             android:id="@+id/redName"
-            android:textColor="@color/buttonred"/>
+            android:textColor="@color/red"/>
 
         <TextView
             android:layout_width="0dp"

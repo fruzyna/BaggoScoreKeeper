@@ -166,7 +166,7 @@
                         android:layout_toEndOf="@+id/player1"
                         android:layout_toRightOf="@+id/player1"
                         android:text="(Blue Side A)"
-                        android:textColor="@color/buttonblue" />
+                        android:textColor="@color/blue" />
 
                     <TextView
                         android:id="@+id/textView8"
@@ -176,7 +176,7 @@
                         android:layout_toEndOf="@+id/player2"
                         android:layout_toRightOf="@+id/player2"
                         android:text="(Blue Side B)"
-                        android:textColor="@color/buttonblue" />
+                        android:textColor="@color/blue" />
 
                     <TextView
                         android:id="@+id/textView9"
@@ -186,7 +186,7 @@
                         android:layout_toEndOf="@+id/player3"
                         android:layout_toRightOf="@+id/player3"
                         android:text="(Red Side A)"
-                        android:textColor="@color/buttonred" />
+                        android:textColor="@color/red" />
 
                     <TextView
                         android:id="@+id/textView10"
@@ -196,7 +196,7 @@
                         android:layout_toEndOf="@+id/player4"
                         android:layout_toRightOf="@+id/player4"
                         android:text="(Red Side B)"
-                        android:textColor="@color/buttonred" />
+                        android:textColor="@color/red" />
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
@@ -243,7 +243,7 @@
 
     <Button
         android:id="@+id/start"
-        android:backgroundTint="@color/buttonblue"
+        android:backgroundTint="@color/blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Start Game"

@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import org.json.JSONException;
 
@@ -30,7 +32,7 @@ public class BaggoActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
-        Button newGame = (Button) findViewById(R.id.newgame);
+        CardView newGame = (CardView) findViewById(R.id.newgame);
         newGame.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -40,7 +42,7 @@ public class BaggoActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-        Button resume = (Button) findViewById(R.id.resume);
+        CardView resume = (CardView) findViewById(R.id.resume);
         resume.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -50,7 +52,7 @@ public class BaggoActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-        Button view = (Button) findViewById(R.id.view);
+        CardView view = (CardView) findViewById(R.id.view);
         view.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -60,5 +62,28 @@ public class BaggoActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+        CardView settings = (CardView) findViewById(R.id.settings);
+        settings.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(c, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        int existing = 0;
+        for(int i = 0; i < IO.getInstance().games.size(); i++)
+        {
+            Game game = IO.getInstance().games.get(i);
+            if(!game.complete)
+            {
+                existing++;
+            }
+        }
+
+        ((TextView) findViewById(R.id.games)).setText(IO.getInstance().games.size() + " Games");
+        ((TextView) findViewById(R.id.existingGames)).setText(existing + " Games");
     }
 }

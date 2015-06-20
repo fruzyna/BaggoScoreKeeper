@@ -1,16 +1,10 @@
 package com.mail929.android.baggoscorekeeper;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -296,15 +290,15 @@ public class InGameActivity extends AppCompatActivity
         them.setText(game.getPlayer(game.getOpposingPlayer(game.currentPlayer)));
         if(game.isBlue(game.currentPlayer))
         {
-            player.setTextColor(getResources().getColor(R.color.buttonblue));
-            you.setTextColor(getResources().getColor(R.color.buttonblue));
-            them.setTextColor(getResources().getColor(R.color.buttonred));
+            player.setTextColor(getResources().getColor(R.color.blue));
+            you.setTextColor(getResources().getColor(R.color.blue));
+            them.setTextColor(getResources().getColor(R.color.red));
         }
         else
         {
-            player.setTextColor(getResources().getColor(R.color.buttonred));
-            you.setTextColor(getResources().getColor(R.color.buttonred));
-            them.setTextColor(getResources().getColor(R.color.buttonblue));
+            player.setTextColor(getResources().getColor(R.color.red));
+            you.setTextColor(getResources().getColor(R.color.red));
+            them.setTextColor(getResources().getColor(R.color.blue));
         }
         ((TextView) findViewById(R.id.throwcount)).setText("Throw " + game.currentThrow);
         ((TextView) findViewById(R.id.score)).setText(game.blueScore + " - " + game.redScore);

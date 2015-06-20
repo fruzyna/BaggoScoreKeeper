@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:text="BA Name"
                 android:id="@+id/ba_name"
-                android:textColor="@color/buttonblue"
+                android:textColor="@color/blue"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:text="BB Name"
                 android:id="@+id/bb_name"
-                android:textColor="@color/buttonblue"
+                android:textColor="@color/blue"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -193,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:text="RA Name"
                 android:id="@+id/ra_name"
-                android:textColor="@color/buttonred"
+                android:textColor="@color/red"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -246,7 +246,7 @@
                 android:layout_height="wrap_content"
                 android:text="RB Name"
                 android:id="@+id/rb_name"
-                android:textColor="@color/buttonred"
+                android:textColor="@color/red"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
