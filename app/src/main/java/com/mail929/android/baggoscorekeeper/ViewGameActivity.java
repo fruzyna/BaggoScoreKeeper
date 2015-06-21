@@ -72,66 +72,38 @@ public class ViewGameActivity extends AppCompatActivity
         
         Board aTotals = new Board();
         Board bTotals = new Board();
-        
+
+        boolean a = false;
         for(int i = 0; i < game.boards.size(); i++)
         {
+            a = !a;
             Board b = game.boards.get(i);
-            if(aTotals.blueName.equals(b.blueName))
+            if(a)
             {
-                aTotals.redOn += b.redOn;
-                aTotals.redIn += b.redIn;
-                aTotals.redOff += b.redOff;
-                aTotals.redKnockedIn += b.redKnockedIn;
-                aTotals.redKnockedOff += b.redKnockedOff;
-                
-                aTotals.blueOn += b.blueOn;
-                aTotals.blueIn += b.blueIn;
-                aTotals.blueOff += b.blueOff;
-                aTotals.blueKnockedIn += b.blueKnockedIn;
-                aTotals.blueKnockedOff += b.blueKnockedOff;
-            }
-            else if(bTotals.blueName.equals(b.blueName))
-            {
-                bTotals.redOn += b.redOn;
-                bTotals.redIn += b.redIn;
-                bTotals.redOff += b.redOff;
-                bTotals.redKnockedIn += b.redKnockedIn;
-                bTotals.redKnockedOff += b.redKnockedOff;
-
-                bTotals.blueOn += b.blueOn;
-                bTotals.blueIn += b.blueIn;
-                bTotals.blueOff += b.blueOff;
-                bTotals.blueKnockedIn += b.blueKnockedIn;
-                bTotals.blueKnockedOff += b.blueKnockedOff;
-            }
-            else if(aTotals.blueName.equals(""))
-            {
-                aTotals.blueName = b.blueName;
                 aTotals.redName = b.redName;
-                
                 aTotals.redOn += b.redOn;
                 aTotals.redIn += b.redIn;
                 aTotals.redOff += b.redOff;
                 aTotals.redKnockedIn += b.redKnockedIn;
                 aTotals.redKnockedOff += b.redKnockedOff;
 
+                aTotals.blueName = b.blueName;
                 aTotals.blueOn += b.blueOn;
                 aTotals.blueIn += b.blueIn;
                 aTotals.blueOff += b.blueOff;
                 aTotals.blueKnockedIn += b.blueKnockedIn;
                 aTotals.blueKnockedOff += b.blueKnockedOff;
             }
-            else if(bTotals.blueName.equals(""))
+            else
             {
-                bTotals.blueName = b.blueName;
                 bTotals.redName = b.redName;
-
                 bTotals.redOn += b.redOn;
                 bTotals.redIn += b.redIn;
                 bTotals.redOff += b.redOff;
                 bTotals.redKnockedIn += b.redKnockedIn;
                 bTotals.redKnockedOff += b.redKnockedOff;
 
+                bTotals.blueName = b.blueName;
                 bTotals.blueOn += b.blueOn;
                 bTotals.blueIn += b.blueIn;
                 bTotals.blueOff += b.blueOff;

@@ -67,6 +67,14 @@ public class NewGameActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent intent = new Intent(c, InGameActivity.class);
+                if(Integer.parseInt(throwsAllowed.getText().toString()) <= 0)
+                {
+                    intent.putExtra("throws", 1);
+                }
+                else
+                {
+                    intent.putExtra("throws", Integer.parseInt(throwsAllowed.getText().toString()));
+                }
                 intent.putExtra("isFirstTo", firstToRB.isChecked());
                 if(firstToRB.isChecked())
                 {
@@ -77,11 +85,30 @@ public class NewGameActivity extends AppCompatActivity
                     intent.putExtra("goal", Integer.parseInt(highestAfter.getText().toString()));
                 }
                 intent.putExtra("Type", "new");
-                intent.putExtra("player1", player1.getText().toString());
-                intent.putExtra("player2", player2.getText().toString());
-                intent.putExtra("player3", player3.getText().toString());
-                intent.putExtra("player4", player4.getText().toString());
-                intent.putExtra("throws", Integer.parseInt(throwsAllowed.getText().toString()));
+                String p1 = player1.getText().toString();
+                String p2 = player1.getText().toString();
+                String p3 = player1.getText().toString();
+                String p4 = player1.getText().toString();
+                if(p1.equals(""))
+                {
+                    p1 = "Blue A";
+                }
+                if(p2.equals(""))
+                {
+                    p2 = "Blue B";
+                }
+                if(p3.equals(""))
+                {
+                    p3 = "Red A";
+                }
+                if(p4.equals(""))
+                {
+                    p4 = "Red B";
+                }
+                intent.putExtra("player1", p1);
+                intent.putExtra("player2", p2);
+                intent.putExtra("player3", p3);
+                intent.putExtra("player4", p4);
                 startActivity(intent);
             }
         });
