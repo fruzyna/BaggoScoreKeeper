@@ -2,6 +2,7 @@ package com.mail929.android.baggoscorekeeper;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -85,5 +86,12 @@ public class BaggoActivity extends AppCompatActivity
 
         ((TextView) findViewById(R.id.games)).setText(IO.getInstance().games.size() + " Games");
         ((TextView) findViewById(R.id.existingGames)).setText(existing + " Games");
+        try
+        {
+            ((TextView) findViewById(R.id.version)).setText("Version: " + getPackageManager().getPackageInfo(getPackageName(), 0).versionName);
+        } catch (PackageManager.NameNotFoundException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

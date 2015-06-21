@@ -1,9 +1,13 @@
 package com.mail929.android.baggoscorekeeper;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
+import android.preference.PreferenceScreen;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatCheckedTextView;
 import android.support.v7.widget.AppCompatEditText;
@@ -26,6 +30,23 @@ public class SettingsActivity extends PreferenceActivity
     {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
+
+        PreferenceScreen ps = getPreferenceManager().createPreferenceScreen(this);
+        PreferenceCategory about = new PreferenceCategory(this);
+        about.setTitle("About");
+        ps.addPreference(about);
+
+        Preference version = new Preference(this);
+        version.setTitle("App Version");
+        try
+        {
+            version.setSummary(getPackageManager().getPackageInfo(getPackageName(), 0).versionName);
+        } catch (PackageManager.NameNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        about.addPreference(version);
+        setPreferenceScreen(ps);
     }
 
     @Override
