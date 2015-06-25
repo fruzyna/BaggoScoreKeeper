@@ -32,6 +32,7 @@ public class ExistingGamesActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games);
+        getSupportActionBar().setTitle("Open Games");
 
         final Context c = this;
 

@@ -2,6 +2,7 @@ package com.mail929.android.baggoscorekeeper;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -29,7 +30,6 @@ public class SettingsActivity extends PreferenceActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.preferences);
 
         PreferenceScreen ps = getPreferenceManager().createPreferenceScreen(this);
         PreferenceCategory about = new PreferenceCategory(this);
@@ -56,6 +56,8 @@ public class SettingsActivity extends PreferenceActivity
 
         LinearLayout root = (LinearLayout)findViewById(android.R.id.list).getParent().getParent().getParent();
         Toolbar bar = (Toolbar) LayoutInflater.from(this).inflate(R.layout.settings_toolbar, root, false);
+        bar.setTitleTextColor(Color.parseColor("#FFFFFF"));
+        bar.setTranslationZ(8);
         root.addView(bar, 0);
         bar.setNavigationOnClickListener(new View.OnClickListener()
         {

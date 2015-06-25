@@ -21,6 +21,7 @@ public class ViewGameActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewgame);
+        getSupportActionBar().setTitle("Game Stats");
 
         final Context c = this;
 

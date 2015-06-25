@@ -28,6 +28,7 @@ public class ViewGamesActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games);
+        getSupportActionBar().setTitle("All Games");
 
         final Context c = this;
 

@@ -39,6 +39,7 @@ public class InGameActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingame);
+        getSupportActionBar().setTitle("In Game");
 
         Intent i = getIntent();
         if(i.getStringExtra("Type").equals("new"))

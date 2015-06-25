@@ -14,8 +14,9 @@ import org.json.JSONException;
 
 import java.io.IOException;
 
-public class BaggoActivity extends AppCompatActivity
+public class HomeActivity extends AppCompatActivity
 {
+    static Context c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -23,7 +24,7 @@ public class BaggoActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baggo);
 
-        final Context c = this;
+        c = this;
 
         try {
             IO.getInstance().read();
@@ -73,6 +74,19 @@ public class BaggoActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+        gameCount();
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        gameCount();
+    }
+
+    public void gameCount()
+    {
 
         int existing = 0;
         for(int i = 0; i < IO.getInstance().games.size(); i++)
