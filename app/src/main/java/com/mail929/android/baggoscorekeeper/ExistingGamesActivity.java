@@ -1,5 +1,6 @@
 package com.mail929.android.baggoscorekeeper;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import java.util.List;
  */
 public class ExistingGamesActivity extends AppCompatActivity
 {
+    List<Game> games;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,7 +35,7 @@ public class ExistingGamesActivity extends AppCompatActivity
 
         final Context c = this;
 
-        final List<Game> games = new ArrayList<>();
+        games = new ArrayList<>();
         for(int i = 0; i < IO.getInstance().games.size(); i++)
         {
             Game game = IO.getInstance().games.get(i);
@@ -42,6 +44,8 @@ public class ExistingGamesActivity extends AppCompatActivity
                 games.add(game);
             }
         }
+
+        checkGames();
 
         final ListView list = (ListView) findViewById(R.id.listView);
         list.setAdapter(new ArrayAdapter<Game>(this, R.layout.listitem_game, R.id.blueNames, games)
@@ -87,6 +91,7 @@ public class ExistingGamesActivity extends AppCompatActivity
                             }
                         }
                         games.remove(position);
+                        checkGames();
                         try {
                             IO.getInstance().save();
                         } catch (JSONException e) {
@@ -101,6 +106,7 @@ public class ExistingGamesActivity extends AppCompatActivity
                                     public void onClick(View v)
                                     {
                                         IO.getInstance().games.add(game);
+                                        checkGames();
                                         try {
                                             IO.getInstance().save();
                                         } catch (JSONException e) {
@@ -118,5 +124,20 @@ public class ExistingGamesActivity extends AppCompatActivity
                 return view;
             }
         });
+    }
+
+    public void checkGames()
+    {
+        TextView message = (TextView) findViewById(R.id.message);
+        if(games.size() == 0)
+        {
+            message.setText("There are no incomplete games.");
+            message.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            message.setText("");
+            message.setVisibility(View.GONE);
+        }
     }
 }

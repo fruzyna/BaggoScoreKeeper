@@ -1,5 +1,6 @@
 package com.mail929.android.baggoscorekeeper;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +30,8 @@ public class ViewGamesActivity extends AppCompatActivity
         setContentView(R.layout.activity_games);
 
         final Context c = this;
+
+        checkGames();
 
         final ListView list = (ListView) findViewById(R.id.listView);
         list.setAdapter(new ArrayAdapter<Game>(this, R.layout.listitem_game, R.id.blueNames, IO.getInstance().games)
@@ -66,6 +69,7 @@ public class ViewGamesActivity extends AppCompatActivity
                     public boolean onLongClick(View v)
                     {
                         IO.getInstance().games.remove(position);
+                        checkGames();
                         try {
                             IO.getInstance().save();
                         } catch (JSONException e) {
@@ -80,6 +84,7 @@ public class ViewGamesActivity extends AppCompatActivity
                                     public void onClick(View v)
                                     {
                                         IO.getInstance().games.add(game);
+                                        checkGames();
                                         try {
                                             IO.getInstance().save();
                                         } catch (JSONException e) {
@@ -97,5 +102,20 @@ public class ViewGamesActivity extends AppCompatActivity
                 return view;
             }
         });
+    }
+
+    public void checkGames()
+    {
+        TextView message = (TextView) findViewById(R.id.message);
+        if(IO.getInstance().games.size() == 0)
+        {
+            message.setText("There are no games.");
+            message.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            message.setText("");
+            message.setVisibility(View.GONE);
+        }
     }
 }
