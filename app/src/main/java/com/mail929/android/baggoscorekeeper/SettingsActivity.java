@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.DialogPreference;
+import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
@@ -21,6 +22,7 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,6 +82,60 @@ public class SettingsActivity extends PreferenceActivity
             }
         });
         gen.addPreference(scoring);
+
+        EditTextPreference firstTo = new EditTextPreference(this);
+        firstTo.setTitle("First to Default");
+        firstTo.setSummary("The default score for the first to scoring style");
+        firstTo.setDialogTitle("Enter First to default");
+        firstTo.setDefaultValue(prefs.getInt("firstTo", 21) + "");
+        firstTo.getEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
+        firstTo.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener()
+        {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue)
+            {
+                editor.putInt("firstTo", Integer.parseInt((String) newValue));
+                editor.commit();
+                return false;
+            }
+        });
+        gen.addPreference(firstTo);
+
+        EditTextPreference highestAfter = new EditTextPreference(this);
+        highestAfter.setTitle("Highest After Default");
+        highestAfter.setSummary("The default goal for the highest after scoring style");
+        highestAfter.setDialogTitle("Enter Highest After default");
+        highestAfter.setDefaultValue(prefs.getInt("highestAfter", 7) + "");
+        highestAfter.getEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
+        highestAfter.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener()
+        {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue)
+            {
+                editor.putInt("highestAfter", Integer.parseInt((String) newValue));
+                editor.commit();
+                return false;
+            }
+        });
+        gen.addPreference(highestAfter);
+
+        EditTextPreference throwsAllowed = new EditTextPreference(this);
+        throwsAllowed.setTitle("Default Throws Allowed");
+        throwsAllowed.setSummary("The default amount of throws allowed per side");
+        throwsAllowed.setDialogTitle("Enter Throws Allowed default");
+        throwsAllowed.setDefaultValue(prefs.getInt("throwsAllowed", 5) + "");
+        throwsAllowed.getEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
+        throwsAllowed.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener()
+        {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue)
+            {
+                editor.putInt("throwsAllowed", Integer.parseInt((String) newValue));
+                editor.commit();
+                return false;
+            }
+        });
+        gen.addPreference(throwsAllowed);
 
         PreferenceCategory about = new PreferenceCategory(this);
         about.setTitle("About");

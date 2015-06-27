@@ -73,6 +73,11 @@ public class NewGameActivity extends AppCompatActivity
         player3 = (EditText) findViewById(R.id.player3);
         player4 = (EditText) findViewById(R.id.player4);
         throwsAllowed = (EditText) findViewById(R.id.throwsallowed);
+
+        firstTo.setText(prefs.getInt("firstTo", 21) + "");
+        highestAfter.setText(prefs.getInt("highestAfter", 7) + "");
+        throwsAllowed.setText(prefs.getInt("throwsAllowed", 5) + "");
+
         Button start = (Button) findViewById(R.id.start);
         start.setOnClickListener(new View.OnClickListener()
         {
