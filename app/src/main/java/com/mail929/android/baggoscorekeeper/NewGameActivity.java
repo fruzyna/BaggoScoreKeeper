@@ -2,6 +2,7 @@ package com.mail929.android.baggoscorekeeper;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -38,6 +39,17 @@ public class NewGameActivity extends AppCompatActivity
 
         firstToRB = (RadioButton) findViewById(R.id.firstToRB);
         highestAfterRB = (RadioButton) findViewById(R.id.highestAfterRB);
+
+        SharedPreferences prefs = this.getSharedPreferences(getString(R.string.prefkey), Context.MODE_PRIVATE);
+        if(prefs.getBoolean("scoringStyle", false))
+        {
+            highestAfterRB.setChecked(true);
+        }
+        else
+        {
+            firstToRB.setChecked(true);
+        }
+
         firstToRB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
             @Override

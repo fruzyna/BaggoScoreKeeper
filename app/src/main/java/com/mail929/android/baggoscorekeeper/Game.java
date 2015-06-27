@@ -1,6 +1,7 @@
 package com.mail929.android.baggoscorekeeper;
 
 import android.app.DialogFragment;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import java.util.ArrayList;

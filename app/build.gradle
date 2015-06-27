@@ -8,8 +8,8 @@ android {
         applicationId "com.mail929.android.baggoscorekeeper"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 6
-        versionName "b 1.2.1"
+        versionCode 7
+        versionName "r 1.0.0"
     }
     buildTypes {
         release {
