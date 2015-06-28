@@ -104,9 +104,9 @@ public class NewGameActivity extends AppCompatActivity
                 }
                 intent.putExtra("Type", "new");
                 String p1 = player1.getText().toString();
-                String p2 = player1.getText().toString();
-                String p3 = player1.getText().toString();
-                String p4 = player1.getText().toString();
+                String p2 = player2.getText().toString();
+                String p3 = player3.getText().toString();
+                String p4 = player4.getText().toString();
                 if(p1.equals(""))
                 {
                     p1 = "Blue A";
